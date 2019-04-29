@@ -25,6 +25,11 @@ else:
     from PIL import Image
 
 
+
+ffmpeg_options = {
+    'options': '-vn'
+}
+
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 
@@ -42,9 +47,6 @@ ytdl_format_options = {
     'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
 
-ffmpeg_options = {
-    'options': '-vn'
-}
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
@@ -70,6 +72,107 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
+#the code below is pretty much copied from the discord.py examples as im lazy. :)
+class Music(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def join(self, ctx, *, channel: discord.VoiceChannel):
+        """Joins a voice channel"""
+
+        if ctx.voice_client is not None:
+            return await ctx.voice_client.move_to(channel)
+
+        await channel.connect()
+
+
+    @commands.command()
+    async def yt(self, ctx, *, url):
+        """Streams from a url (same as yt, but doesn't predownload)"""
+
+        async with ctx.typing():
+            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+        await ctx.send('Now playing: {}'.format(player.title))
+
+    @commands.command()
+    async def lofi(self, ctx):
+        url = "lofi beats to relax study to"
+        """Streams from a url (same as yt, but doesn't predownload)"""
+
+        async with ctx.typing():
+            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+        await ctx.send('Now playing: {}'.format(player.title))
+
+    @commands.command()
+    async def volume(self, ctx, volume: int):
+        """Changes the player's volume"""
+
+        if ctx.voice_client is None:
+            return await ctx.send("Not connected to a voice channel.")
+
+        ctx.voice_client.source.volume = volume / 100
+        await ctx.send("Changed volume to {}%".format(volume))
+
+    @commands.command()
+    async def stop(self, ctx):
+        """Stops and disconnects the bot from voice"""
+
+        await ctx.voice_client.disconnect()
+
+    @commands.command()
+    async def knock(self, ctx):
+        """Plays knocking sounds in Voice Chat"""
+
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./knock.mp3"))
+        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+
+    @commands.command()
+    async def smw(self, ctx):
+        """Plays smw music in Voice Chat"""
+
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./smw.mp3"))
+        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+
+    @commands.command()
+    async def haha(self, ctx):
+        """Plays gnome sounds in Voice Chat"""
+
+        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./gnome.mp3"))
+        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+
+    @commands.command()
+    async def ricardo(self, ctx):
+        """Plays ricardo sounds in Voice Chat"""
+
+        ricnumb = random.randint(1, 2)
+
+        if ricnumb == 1:
+            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./dota.mp3"))
+            await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+        elif ricnumb == 2:
+            source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./ugot.mp3"))
+            await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
+
+    @lofi.before_invoke
+    @ricardo.before_invoke
+    @smw.before_invoke
+    @haha.before_invoke
+    @knock.before_invoke
+    @yt.before_invoke
+    async def ensure_voice(self, ctx):
+        if ctx.voice_client is None:
+            if ctx.author.voice:
+                await ctx.author.voice.channel.connect()
+            else:
+                await ctx.send("You are not connected to a voice channel.")
+                raise commands.CommandError("Author not connected to a voice channel.")
+        elif ctx.voice_client.is_playing():
+            ctx.voice_client.stop()
 
 
 class NotInWhiteList(commands.CheckFailure):
@@ -106,7 +209,7 @@ if not sys.version_info[:2] >= (3, 5):
     print("Error: requires python 3.5.2 or newer")
     exit(1)
 
-async def status_task():
+async def status_task(): #This is the thing that loops in between different "now playing" states to show info
     while True:
         activity = discord.Game(name="with an Server near you",  type=1)
         await bot.change_presence(status=discord.Status.online, activity=activity)
@@ -114,78 +217,22 @@ async def status_task():
         activity = discord.Game(name="if you do jn help", type=1)
         await bot.change_presence(status=discord.Status.idle, activity=activity)
         await asyncio.sleep(10)
-        activity = discord.Game(name="do jn setlang after adding!", type=1)
+        activity = discord.Game(name="with contributers!", type=1)
         await bot.change_presence(status=discord.Status.do_not_disturb, activity=activity)
         await asyncio.sleep(10)
 
-description = '''Rewritten Version of FuckTardBot.
+
+
+
+description = '''Rewritten Version of FuckTardBot, now called JeffNation
 You may contact the owner (using jn console) if an issue
 was found.'''
-bot = commands.Bot(command_prefix='jn ', description=description)
-bot.remove_command('help')
+bot = commands.Bot(command_prefix='jn ', description=description) #here we set up the bots prefix. the description is unused as its only used in the stock help page, we use an custom one
+
+bot.remove_command('help') #Removing the stock help command for our custom solution. Also it looks messy compared to ours
+
 TOKEN = token.gettoken()
 
-
-ffmpeg_options = {
-    'before_options': '-nostdin',
-    'options': '-vn'
-}
-
-
-class knocking:
-    @bot.command()
-    async def knock(ctx):
-        """Plays knocking sounds in Voice Chat"""
-
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./knock.mp3"))
-        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
-
-    @bot.command()
-    async def smw(ctx):
-        """Plays knocking sounds in Voice Chat"""
-
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./smw.mp3"))
-        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
-
-    @bot.command()
-    async def haha(ctx):
-        """Plays knocking sounds in Voice Chat"""
-
-        source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio("./gnome.mp3"))
-        await ctx.voice_client.play(source, after=lambda e: print('Player error: %s' % e) if e else None)
-
-    #https://www.youtube.com/watch?v=hHW1oY26kxQ
-    @bot.command()
-    async def lofi(self, ctx):
-        """Streams from a url (same as yt, but doesn't predownload)"""
-
-        async with ctx.typing():
-            player = await YTDLSource.from_url("https://www.youtube.com/watch?v=hHW1oY26kxQ", loop=self.bot.loop, stream=True)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-
-    @bot.command()
-    async def stop(ctx):
-        """Stops and disconnects the bot from voice"""
-
-        await ctx.voice_client.disconnect()
-
-    @smw.before_invoke
-    @haha.before_invoke
-    @lofi.before_invoke
-    @knock.before_invoke
-    async def ensure_voice(ctx):
-        if ctx.voice_client is None:
-            if ctx.author.voice:
-                await ctx.author.voice.channel.connect()
-            else:
-                await ctx.send("You are not connected to a voice channel.")
-                raise commands.CommandError("Author not connected to a voice channel.")
-        elif ctx.voice_client.is_playing():
-            ctx.voice_client.stop()
-
-    @bot.command()
-    async def knocksound(ctx):
-        await ctx.send(file=discord.File("knock.mp3"))
 
 
 
@@ -214,7 +261,7 @@ async def on_error(ctx, event, *args, **kwargs):
 async def on_command_error(ctx, error):
     if isinstance(error, NotInWhiteList):
         await ctx.author.send(error)
-smw
+    print(error)
 
 
 class misc:
@@ -416,7 +463,7 @@ class misc:
 
     @bot.command()
     async def source(ctx):
-        await ctx.send(file=discord.File("source/source.zip"))
+        await ctx.send("https://github.com/p8tgames/jeffnation-bot.py")
 
 
     @bot.command()
@@ -467,7 +514,6 @@ class misc:
             embed=embed)
 
     @bot.command()
-    @has_permissions(manage_messages=True)
     async def setlang(ctx, value=0):
         if value=="english":
             try:
@@ -494,8 +540,10 @@ class misc:
             myfile.write("{}".format(value))
             if value==1:
                 await ctx.send("I've set your preffered language to german!")
-            else:
+            elif value==0:
                 await ctx.send("I've set your preffered language to english!")
+            else:
+                await ctx.send(langs.setlangerr[isitallowed(ctx.guild.id, ctx.author.id)])
 
     @bot.command()
     @has_permissions(manage_messages=True)
@@ -551,6 +599,7 @@ class help: #done
             embed.add_field(name="Fun", value=langs.helpfun[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="Infos", value=langs.helpinfos[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="Misc", value=langs.helpmisc[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="Music", value=langs.helpmusic[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name=langs.helpbug1[isitallowed(guildid, ctx.author.id)], value=langs.helpbug2[isitallowed(guildid, ctx.author.id)])
 
             await ctx.send(
@@ -613,6 +662,7 @@ class help: #done
 
             embed.add_field(name="jn avatar", value=langs.ihlpavatar[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="jn joined", value=langs.ihlpjoined[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn source", value=langs.ihlpsource[isitallowed(guildid, ctx.author.id)]),
 
             await ctx.send(
                 content="",
@@ -635,6 +685,29 @@ class help: #done
             embed.add_field(name="jn console", value=langs.mhlpconsole[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="jn add", value=langs.mhlpadd[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="jn choose", value=langs.mhlpchoose[isitallowed(guildid, ctx.author.id)]),
+
+            await ctx.send(
+                content="",
+                embed=embed)
+            return
+
+        if "music" in category:
+            ts = int(time.time())
+            embed = discord.Embed(title=langs.musicpmain[isitallowed(guildid, ctx.author.id)],
+                                  colour=discord.Colour(0xaee38f),
+                                  description=langs.helpreq_string[isitallowed(guildid, ctx.author.id)],
+                                  timestamp=datetime.datetime.utcfromtimestamp(ts))
+            embed.set_author(name="Jeff Nation"),
+            embed.set_footer(text=langs.helphelp_string[isitallowed(guildid, ctx.author.id)]),
+
+            embed.add_field(name="jn haha", value=langs.musichaha[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn ricardo", value=langs.musicricardo[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn yt", value=langs.musicyt[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn lofi", value=langs.musiclofi[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn smw", value=langs.musicsmw[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn knock", value=langs.musicknock[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn stop", value=langs.musicstop[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="jn volume", value=langs.musicvolume[isitallowed(guildid, ctx.author.id)]),
 
             await ctx.send(
                 content="",
@@ -673,5 +746,5 @@ class sudos:  # done
                 await ctx.send("PHASE 3 FAILURE! settings.py DID NOT RECEIVE guildid")
 
 
-
+bot.add_cog(Music(bot))
 bot.run(TOKEN)

@@ -20,6 +20,7 @@ helpadmin = ["Type jn help admin", "Gebe jn help admin ein", ""]
 helpfun = ["Type jn help fun", "Gebe jn help fun ein", ""]
 helpinfos = ["Type jn help infos", "Gebe jn help infos ein", ""]
 helpmisc = ["Type jn help misc", "Gebe jn help misc ein", ""]
+helpmusic = ["Type jn help music", "Gebe jn help music ein", ""]
 helpbug1 = ["What do I do if there's a bug?", "Was mache ich wenn ich einen bug finde?", ""]
 helpbug2 = ["Report it using jn console (error here)", "Melde es mit jn console (error hier)", ""]
 
@@ -38,6 +39,7 @@ fhlpguess = ["Guess the number game. Usage: jn guess (your guess) (max number)",
 ihlpmain = ["Help - Infos Page", "Hilfe - Infos Seite", ""]
 ihlpavatar = ["Get's the tagged user's avatar. Usage: jn avatar (tag someone)", "Zeigt von einem Nutzer das Profilbild. Nutzung: jn avatar (markier jemand)", ""]
 ihlpjoined = ["Get's the date someone joined. Usage: jn joined (tag someone)", "Zeigt das Datum wo jemand beigetreten ist. Nutzung: jn joined (markier jemand)", ""]
+ihlpsource = ["Sends the GitHub page of the bot.", "Schickt den GitHub Link des Bots.", ""]
 
 mhlpmain = ["Help - Misc Page", "Hilfe - Misc Seite", ""]
 mhlphw = ["How many days until Halloween?", "Wie viele Tage bis Halloween?", ""]
@@ -45,6 +47,16 @@ mhlpkickme = ["No explanation needed.", "Keine Erklärung benötigt.", ""]
 mhlpconsole = ["Leave message in the console. Usage: jn console (your message)", "Lass eine Nachricht in der Konsole. Nutzung: jn console (deine Nachricht)", ""]
 mhlpadd = ["Adds 2 numbers. Usage: jn add (1) (2)", "Fügt 2 Nummern hinzu. Nutzung: jn add (1) (2)", ""]
 mhlpchoose = ["Let the bot choose between things. Usage: jn choose (option 1) (option 2), ...", "Lass den Bot entscheiden. Nutzung: jn choose (option 1) (option 2), ...", ""]
+
+musicpmain = ["Help - Music Page", "Hilfe - Musik Seite", ""]
+musicricardo = ["Plays one out of two Ricardo song", "Spielt eins von zwi Ricardo Songs ab.", ""]
+musichaha = ["Plays haha", "Spielt haha", ""]
+musicsmw = ["Plays totally normal Super Mario World Music", "Spielt 100% normale Super Mario World Musik ab.", ""]
+musicknock = ["Plays knocking sounds in the voice chat.", "Spielt klopf-Geräusche im Voice-Chat ab", ""]
+musiclofi = ["【﻿２４／７　ｌｏｆｉ　ｂｅａｔｓ　ｔｏ　ｒｅｌａｘ／ｓｔｕｄｙ　ｔｏ】", "【﻿２４／７　ｌｏｆｉ　ｂｅａｔｓ　ｕｍ　ｚｕ　ｌｅｒｎｅｎ／ｒｅｌａｘｅｎ】", ""]
+musicyt = ["Plays something from YouTube. Use an URL or search for an term.", "Spielt Musik von YouTube ab. Nutze bitte eine URL oder gebe einen Suchbegriff ein."]
+musicvolume = ["Set's the volume for the bot to use.", "Stellt die Lautstärke ein, die der Bot nutzen soll."]
+musicstop = ["Stops the current music.", "Stoppt die jetzige Musik."]
 
 adminstold = ["My admins told me so...", "Meine Admins haben es mir befohlen...", ""]
 
@@ -75,3 +87,5 @@ avatarerror = ["You need to TAG someone, silly.", "Du musst jemanden MAKIEREN, D
 
 gay1 = ["Albert Einsteins Homosexual Calculator", "Schwul-O-Meter 9000"]
 gay2 = ["The Gay-O-Meter 9000 says that", "Der Schwul-O-Meter 9000 sagt das"]
+
+setlangerr = ["Not set value! Please use 0 for english and 1 for german!", "Nicht gesetzte Zahl! Bitte nutze 0 für Englisch und 1 für Deutsch!"]
