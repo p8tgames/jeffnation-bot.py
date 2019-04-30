@@ -1,7 +1,7 @@
 # Langs
 #this file can be shared as often as you please, as im hhappy about every translation added.
 #count the number of "" for each language. the first one is english, second one german, 3rd furry english, 4th polish and 5th and 6th can be added as desired.
-from hs import settings
+
 
 kickmes_strings = ['With pleasure.', 'Mit vergnügen.', '']
 kickmef_strings = ["I wish I could, but you're admin!", 'Ich wünschte ich könnte das, aber du bist Admin!', '']
@@ -16,37 +16,37 @@ howgayyou_strings = ["{0} is {1}% gay.", "{0} {1}% schwul ist.", ""]
 helpmain_string = ["Help - Main page", "Hilfe - Hauptseite", ""]
 helpreq_string = ["You requested Help. Here's some help...", "Du wolltest Hilfe. Hier hast du Hilfe.", ""]
 helphelp_string = ["Help, that's what ya need huh.", "Hilfe, das ist was du brauchst huh.", ""]
-helpadmin = ["Type jn help admin", "Gebe jn help admin ein", ""]
-helpfun = ["Type jn help fun", "Gebe jn help fun ein", ""]
-helpinfos = ["Type jn help infos", "Gebe jn help infos ein", ""]
-helpmisc = ["Type jn help misc", "Gebe jn help misc ein", ""]
-helpmusic = ["Type jn help music", "Gebe jn help music ein", ""]
+helpadmin = ["Type j!help admin", "Gebe j!help admin ein", ""]
+helpfun = ["Type j!help fun", "Gebe j!help fun ein", ""]
+helpinfos = ["Type j!help infos", "Gebe j!help infos ein", ""]
+helpmisc = ["Type j!help misc", "Gebe j!help misc ein", ""]
+helpmusic = ["Type j!help music", "Gebe j!help music ein", ""]
 helpbug1 = ["What do I do if there's a bug?", "Was mache ich wenn ich einen bug finde?", ""]
-helpbug2 = ["Report it using jn console (error here)", "Melde es mit jn console (error hier)", ""]
+helpbug2 = ["Report it using j!console (error here)", "Melde es mit j!console (error hier)", ""]
 
 ahlpmain = ["Help - Admin page", "Hilfe - Admin Seite"]
-ahlpban = ["Enable or disable user specific languages in your server. Usage: jn specificlang 0/1", "Aktiviere/Deaktiviere Nutzer-Spezifische Sprachen. Nutzung: jn specificlang 0/1", ""]
+ahlpban = ["Enable or disable user specific languages in your server. Usage: j!specificlang 0/1", "Aktiviere/Deaktiviere Nutzer-Spezifische Sprachen. Nutzung: j!specificlang 0/1", ""]
 ahlserverinfo = ["Displays server info", "Zeigt Server-Infos", ""]
 
 fhlpmain = ["""Help - "Fun" page ( ͡° ͜ʖ ͡°)""", """Help - "Spass" Seite ( ͡° ͜ʖ ͡°)""", """"""]
 fhlpcat = ["Random cat gif owo", "Zufälliger Katzen GIF owo", ""]
 fhlpdog = ["Random dog gif OwO", "Zufälliger Hunden GIF OwO", ""]
-fhlphowgay = ["Check how gay someone is. Usage: jn howgay (no tag/tag)", "Prüfe wie schwul jemand ist. Nutzung: jn howgay (makieren/nicht makieren)", ""]
+fhlphowgay = ["Check how gay someone is. Usage: j!howgay (no tag/tag)", "Prüfe wie schwul jemand ist. Nutzung: j!howgay (makieren/nicht makieren)", ""]
 fhlpruns = ["gives out random funny string", "gibt einen witzigen zuffälligen string", ""]
-fhlpisthis = ["Almost same function as jn runs", "Fast selbe Funktion wie jn runs", ""]
-fhlpguess = ["Guess the number game. Usage: jn guess (your guess) (max number)", "Errate die Zahl Spiel. Nutzung: jn guess (erratende zahl) (max. zahl)", ""]
+fhlpisthis = ["Almost same function as j!runs", "Fast selbe Funktion wie j!runs", ""]
+fhlpguess = ["Guess the number game. Usage: j!guess (your guess) (max number)", "Errate die Zahl Spiel. Nutzung: j!guess (erratende zahl) (max. zahl)", ""]
 
 ihlpmain = ["Help - Infos Page", "Hilfe - Infos Seite", ""]
-ihlpavatar = ["Get's the tagged user's avatar. Usage: jn avatar (tag someone)", "Zeigt von einem Nutzer das Profilbild. Nutzung: jn avatar (markier jemand)", ""]
-ihlpjoined = ["Get's the date someone joined. Usage: jn joined (tag someone)", "Zeigt das Datum wo jemand beigetreten ist. Nutzung: jn joined (markier jemand)", ""]
+ihlpavatar = ["Get's the tagged user's avatar. Usage: j!avatar (tag someone)", "Zeigt von einem Nutzer das Profilbild. Nutzung: j!avatar (markier jemand)", ""]
+ihlpjoined = ["Get's the date someone joined. Usage: j!joined (tag someone)", "Zeigt das Datum wo jemand beigetreten ist. Nutzung: j!joined (markier jemand)", ""]
 ihlpsource = ["Sends the GitHub page of the bot.", "Schickt den GitHub Link des Bots.", ""]
 
 mhlpmain = ["Help - Misc Page", "Hilfe - Misc Seite", ""]
 mhlphw = ["How many days until Halloween?", "Wie viele Tage bis Halloween?", ""]
 mhlpkickme = ["No explanation needed.", "Keine Erklärung benötigt.", ""]
-mhlpconsole = ["Leave message in the console. Usage: jn console (your message)", "Lass eine Nachricht in der Konsole. Nutzung: jn console (deine Nachricht)", ""]
-mhlpadd = ["Adds 2 numbers. Usage: jn add (1) (2)", "Fügt 2 Nummern hinzu. Nutzung: jn add (1) (2)", ""]
-mhlpchoose = ["Let the bot choose between things. Usage: jn choose (option 1) (option 2), ...", "Lass den Bot entscheiden. Nutzung: jn choose (option 1) (option 2), ...", ""]
+mhlpconsole = ["Leave message in the console. Usage: j!console (your message)", "Lass eine Nachricht in der Konsole. Nutzung: j!console (deine Nachricht)", ""]
+mhlpadd = ["Adds 2 numbers. Usage: j!add (1) (2)", "Fügt 2 Nummern hinzu. Nutzung: j!add (1) (2)", ""]
+mhlpchoose = ["Let the bot choose between things. Usage: j!choose (option 1) (option 2), ...", "Lass den Bot entscheiden. Nutzung: j!choose (option 1) (option 2), ...", ""]
 
 musicpmain = ["Help - Music Page", "Hilfe - Musik Seite", ""]
 musicricardo = ["Plays one out of two Ricardo song", "Spielt eins von zwi Ricardo Songs ab.", ""]
@@ -75,7 +75,7 @@ si7 = ["Default-Role", "Standart-Rolle", ""]
 si8 = ["Roles", "Rollen", ""]
 
 join1 = ["Join date and time of {}", "Beitrets Datum und Uhrzeit von {}", ""]
-join2 = ["jn joined requested by {}", "jn joined angefragt von {}", ""]
+join2 = ["j!joined requested by {}", "j!joined angefragt von {}", ""]
 join3 = ["{} joined in", "{} trut bei am", ""]
 
 console = ["Your message has been left!", "Deine Nachricht wurde hinterlassen!", ""]
