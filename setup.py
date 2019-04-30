@@ -1,6 +1,6 @@
 import platform
 import os
-import hs.setuplangs
+import cogs.hs.setuplangs
 
 brewinstallmacos = """/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && """
 presetregmacos = "pip3 install discord.py[voice]"
