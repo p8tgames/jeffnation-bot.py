@@ -1,6 +1,5 @@
 # jeffnation-bot.py
-An WIP discord bot using the discord.py library with easy to use setup
-Has user-specific language support with tools for server owners to disable that.
+WARNING: DO NOT USE THIS "CURRENCY" BRANCH AS DAILY. IT IS A TESTING BRANCH FOR AN CURRENCY SYSTEM
 
 # Help us.
 If you got any changes that could make the bot better, please create an commit. You will be credited.
