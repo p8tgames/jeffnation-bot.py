@@ -1,6 +1,27 @@
 from discord.ext import commands
 from discord.ext.commands import has_permissions, MissingPermissions
 import os
+from cogs.hs import langs
+from cogs.hs import *
+
+def isitallowed(guildid, authorid):
+    config = os.path.exists('./{}'.format(guildid))
+    if config:
+        fobj = open("{}".format(guildid))
+        text = fobj.read().strip().split()
+        # Conditions
+
+        while True:
+            s = "0"
+            if s in text:
+                return settings.getlang(authorid)
+            else:
+                # disallowed to have specific user languages
+                return 0
+
+    else:
+        # not specified by server owner, assuming its set to yes
+        return settings.getlang(authorid)
 
 
 

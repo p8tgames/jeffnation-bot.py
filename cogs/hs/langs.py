@@ -21,6 +21,7 @@ helpfun = ["Type j!help fun", "Gebe j!help fun ein", ""]
 helpinfos = ["Type j!help infos", "Gebe j!help infos ein", ""]
 helpmisc = ["Type j!help misc", "Gebe j!help misc ein", ""]
 helpmusic = ["Type j!help music", "Gebe j!help music ein", ""]
+helpmeme = ["Type j!help memes", "Gebe j!help memes ein", ""]
 helpbug1 = ["What do I do if there's a bug?", "Was mache ich wenn ich einen bug finde?", ""]
 helpbug2 = ["Report it using j!console (error here)", "Melde es mit j!console (error hier)", ""]
 
@@ -57,6 +58,14 @@ musiclofi = ["【﻿２４／７　ｌｏｆｉ　ｂｅａｔｓ　ｔｏ　ｒ
 musicyt = ["Plays something from YouTube. Use an URL or search for an term.", "Spielt Musik von YouTube ab. Nutze bitte eine URL oder gebe einen Suchbegriff ein."]
 musicvolume = ["Set's the volume for the bot to use.", "Stellt die Lautstärke ein, die der Bot nutzen soll."]
 musicstop = ["Stops the current music.", "Stoppt die jetzige Musik."]
+
+memesmain = ["Help - Meme Page", "Hilfe - Meme Seite"]
+whodidthis = ["LMAO WHO DID THIS???", "HAHAHAH WER HAT DAS GEMACHT???"]
+reggie = ["Reggie looking at his 3ds", "Reggie der auf seinen 3ds schaut"]
+cry = ["This is so sad!", "Das ist so traurig!"]
+jpeg = ["Do I look like I know what a JPEG is?", "Seh ich so aus als ob ich wüsste was ein JPEG ist?"]
+jacksvideos = ["It's not jacksfilms its jacksvideos", "Es ist nicht jacksfilms es ist jacksvideos"]
+alex = ["Alex is gonna do it", "Alex wird es tun"]
 
 adminstold = ["My admins told me so...", "Meine Admins haben es mir befohlen...", ""]
 

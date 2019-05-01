@@ -7,6 +7,7 @@ import os
 from cogs.hs import *
 import datetime
 
+
 def isitallowed(guildid, authorid):
     config = os.path.exists('./{}'.format(guildid))
     if config:
@@ -19,12 +20,13 @@ def isitallowed(guildid, authorid):
             if s in text:
                 return settings.getlang(authorid)
             else:
-                #disallowed to have specific user languages
+                # disallowed to have specific user languages
                 return 0
 
     else:
-        #not specified by server owner, assuming its set to yes
+        # not specified by server owner, assuming its set to yes
         return settings.getlang(authorid)
+
 
 class help(commands.Cog):  # done
     @commands.command()
@@ -45,6 +47,7 @@ class help(commands.Cog):  # done
             embed.add_field(name="Infos", value=langs.helpinfos[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="Misc", value=langs.helpmisc[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="Music", value=langs.helpmusic[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="Memes", value=langs.helpmeme[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name=langs.helpbug1[isitallowed(guildid, ctx.author.id)],
                             value=langs.helpbug2[isitallowed(guildid, ctx.author.id)])
 
@@ -146,6 +149,27 @@ class help(commands.Cog):  # done
             embed.add_field(name="j!knock", value=langs.musicknock[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="j!stop", value=langs.musicstop[isitallowed(guildid, ctx.author.id)]),
             embed.add_field(name="j!volume", value=langs.musicvolume[isitallowed(guildid, ctx.author.id)]),
+
+            await ctx.send(
+                content="",
+                embed=embed)
+            return
+
+        if "memes" in category:
+            ts = int(time.time())
+            embed = discord.Embed(title=langs.memesmain[isitallowed(guildid, ctx.author.id)],
+                                  colour=discord.Colour(0xaee38f),
+                                  description=langs.helpreq_string[isitallowed(guildid, ctx.author.id)],
+                                  timestamp=datetime.datetime.utcfromtimestamp(ts))
+            embed.set_author(name="Jeff Nation"),
+            embed.set_footer(text=langs.helphelp_string[isitallowed(guildid, ctx.author.id)]),
+
+            embed.add_field(name="j!whodidthis", value=langs.whodidthis[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="j!reggie", value=langs.reggie[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="j!jacksvideos", value=langs.jacksvideos[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="j!alex", value=langs.alex[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="j!cry", value=langs.cry[isitallowed(guildid, ctx.author.id)]),
+            embed.add_field(name="j!jpeg", value=langs.jpeg[isitallowed(guildid, ctx.author.id)]),
 
             await ctx.send(
                 content="",
